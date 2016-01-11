@@ -48,8 +48,9 @@ def get_eol_distribution_filenames(url=None):
     i = rosdistro.get_index(url)
     for d_name, d in i.distributions.items():
         if d_name in EOL_DISTROS:
-            dpath = os.path.abspath(urlparse(d['distribution']).path)
-            distribution_filenames.append(dpath)
+            for f in d['distribution']:
+                dpath = os.path.abspath(urlparse(f).path)
+                distribution_filenames.append(dpath)
     return distribution_filenames
 
 
